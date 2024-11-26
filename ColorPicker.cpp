@@ -18,7 +18,7 @@ ColorPicker::ColorPicker(QWidget *parent)
     // 设置窗口背景透明
     this->setAttribute(Qt::WA_TranslucentBackground);
     // 设置自定义鼠标光标, 偏移(0,19)
-    this->setCursor(QCursor(QPixmap("./img/cursor.png"), 0, 19));
+    this->setCursor(QCursor(QPixmap("./cursor.png"), 0, 19));
 }
 
 void ColorPicker::paintEvent(QPaintEvent *event) {
