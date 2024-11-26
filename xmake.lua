@@ -26,4 +26,20 @@ target("GetColor")
     after_build(function (target) 
         -- copy cursor.png to build target directory
         os.cp("cursor.png", path.join(target:targetdir(), "cursor.png"))
+
+        if is_plat("windows") and is_mode("release") then
+            -- 获取 Qt SDK windeployqt.exe 工具，执行打包项目
+            local qt = target:data("qt")
+            if qt == nil then
+                return
+            end
+            
+            local windeployqt = path.join(qt.bindir, "windeployqt.exe")
+            if not os.isfile(windeployqt) then
+                return
+            end
+            
+            -- 执行 windeployqt
+            os.exec(string.format("\"%s\" \"%s\"", windeployqt, target:targetfile()))
+        end
     end)

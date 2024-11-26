@@ -72,7 +72,23 @@ if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(GetColor)
 endif()
 
-# after build copy cursor.png to build target director
+# Windows 平台下的部署命令
+if(WIN32 AND CMAKE_BUILD_TYPE STREQUAL "Release")
+    # 获取 windeployqt.exe 的路径
+    get_target_property(_qmake_executable Qt${QT_VERSION_MAJOR}::qmake IMPORTED_LOCATION)
+    get_filename_component(_qt_bin_dir "${_qmake_executable}" DIRECTORY)
+    
+    add_custom_command(TARGET GetColor POST_BUILD
+        COMMAND "${_qt_bin_dir}/windeployqt.exe"
+                --no-translations
+                --no-system-d3d-compiler
+                --no-opengl-sw
+                $<TARGET_FILE:GetColor>
+        COMMENT "Deploying Qt dependencies..."
+    )
+endif()
+
+# 复制 cursor.png 文件的命令
 add_custom_command(TARGET GetColor POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy
         ${CMAKE_SOURCE_DIR}/cursor.png
