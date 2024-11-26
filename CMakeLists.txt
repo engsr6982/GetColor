@@ -71,3 +71,10 @@ install(TARGETS GetColor
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(GetColor)
 endif()
+
+# after build copy cursor.png to build target director
+add_custom_command(TARGET GetColor POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy
+        ${CMAKE_SOURCE_DIR}/cursor.png
+        $<TARGET_FILE_DIR:GetColor>/cursor.png
+)
