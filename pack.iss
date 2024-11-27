@@ -13,7 +13,7 @@
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{4A5645D6-99E0-4706-9D61-FC3575E31270}
+AppId={{AF522AC3-D8E1-4B1B-B9DB-65E80CA0D53B}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -32,11 +32,12 @@ ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 ChangesAssociations=yes
 DisableProgramGroupPage=yes
-InfoBeforeFile=D:\GetColor\README.md
+InfoBeforeFile=D:\GetColor\CMakeLists.txt
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
 OutputBaseFilename=GetColor-windows-x64
+SetupIconFile=D:\GetColor\src\logo.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -50,16 +51,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "D:\GetColor\build\windows\x64\release\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\GetColor\build\windows\x64\release\cursor.png"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\GetColor\build\windows\x64\release\D3Dcompiler_47.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\GetColor\build\windows\x64\release\GetColor.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\GetColor\build\windows\x64\release\opengl32sw.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\GetColor\build\windows\x64\release\Qt6Core.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\GetColor\build\windows\x64\release\Qt6Gui.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\GetColor\build\windows\x64\release\Qt6Network.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\GetColor\build\windows\x64\release\Qt6Svg.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\GetColor\build\windows\x64\release\Qt6Widgets.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\GetColor\README.md"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\GetColor\build\windows\x64\release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
