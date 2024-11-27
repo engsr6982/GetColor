@@ -120,4 +120,6 @@ void PixelPreview::paintEvent(QPaintEvent* ev) {
             (mColor.blue() - 1) * 255 / 254
         )
     );
+
+    colorChanged(mColor); // 通知颜色变化
 }

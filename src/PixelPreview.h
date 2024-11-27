@@ -1,4 +1,5 @@
 #pragma once
+#include "qtmetamacros.h"
 #include <QObject>
 #include <QWidget>
 
@@ -14,4 +15,7 @@ private:
 
 protected:
     void paintEvent(QPaintEvent* ev);
+
+signals:
+    void colorChanged(QColor const& color);
 };

@@ -1,6 +1,8 @@
 #include "MainWindow.h"
 #include "./ui_MainWindow.h"
 #include "ColorPicker.h"
+#include "PixelPreview.h"
+#include "qcolor.h"
 #include "qcolordialog.h"
 #include "qlabel.h"
 #include "qlist.h"
@@ -96,6 +98,10 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
         this->mColor = ev;
         this->ui->mColorView->update();
     });
+    connect(this->mPicker.getPixelPreview(), &PixelPreview::colorChanged, [this](QColor const& nc) {
+        this->mColor = nc;
+        this->ui->mColorView->update();
+    });
 
     // 拷贝功能
     COPYDEF(this->ui->mHEX_Copy, this->ui->mHEX->text());
@@ -127,4 +133,7 @@ void MainWindow::paintEvent(QPaintEvent* ev) {
                                  .arg(this->mColor.alphaF()));
     this->ui->mHEX->setText(this->mColor.name());
     this->ui->mHEXA->setText(this->mColor.name(QColor::HexArgb));
+
+    // 同步拾色器
+    this->mDialog->setCurrentColor(this->mColor);
 }

@@ -10,6 +10,8 @@ class ColorPicker : public QWidget {
 public:
     explicit ColorPicker(QWidget* parent = nullptr);
 
+    PixelPreview* getPixelPreview();
+
 private:
     PixelPreview* mPixelPreview;
 

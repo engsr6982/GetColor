@@ -1,4 +1,5 @@
 #include "ColorPicker.h"
+#include "PixelPreview.h"
 
 #include <QApplication>
 #include <QPainter>
@@ -20,12 +21,14 @@ ColorPicker::ColorPicker(QWidget* parent) : QWidget{parent} {
     this->setCursor(QCursor(QPixmap("./cursor.png"), 0, 19));
 }
 
+PixelPreview* ColorPicker::getPixelPreview() { return mPixelPreview; }
+
 void ColorPicker::paintEvent(QPaintEvent* event) {
     QPainter painter(this);
     painter.fillRect(this->rect(), QColor(255, 255, 255, 1));
 }
 
 void ColorPicker::mousePressEvent(QMouseEvent* event) {
-    colorSelect(mPixelPreview->getColor());
-    this->close();
+    colorSelect(mPixelPreview->getColor()); // 通知颜色选择事件
+    this->close();                          // 关闭窗口
 }
